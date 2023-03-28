@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: optical_tweezer_report.aux
 The style file: plain.bst
 Database file #1: optical_tweezer_ref.bib
-You've used 3 entries,
+You've used 5 entries,
             2118 wiz_defined-function locations,
-            514 strings with 4294 characters,
-and the built_in function-call counts, 736 in all, are:
-= -- 67
-> -- 27
-< -- 0
-+ -- 11
-- -- 8
-* -- 37
-:= -- 126
-add.period$ -- 7
-call.type$ -- 3
-change.case$ -- 13
+            527 strings with 4504 characters,
+and the built_in function-call counts, 1249 in all, are:
+= -- 116
+> -- 41
+< -- 1
++ -- 17
+- -- 12
+* -- 69
+:= -- 213
+add.period$ -- 13
+call.type$ -- 5
+change.case$ -- 20
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 25
-empty$ -- 71
-format.name$ -- 8
-if$ -- 152
+cite$ -- 5
+duplicate$ -- 48
+empty$ -- 120
+format.name$ -- 12
+if$ -- 261
 int.to.chr$ -- 0
-int.to.str$ -- 3
-missing$ -- 1
-newline$ -- 16
-num.names$ -- 6
-pop$ -- 19
+int.to.str$ -- 5
+missing$ -- 4
+newline$ -- 26
+num.names$ -- 10
+pop$ -- 28
 preamble$ -- 1
-purify$ -- 10
+purify$ -- 16
 quote$ -- 0
-skip$ -- 28
+skip$ -- 42
 stack$ -- 0
-substring$ -- 40
-swap$ -- 3
-text.length$ -- 0
+substring$ -- 71
+swap$ -- 6
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 12
+type$ -- 18
 warning$ -- 0
-while$ -- 8
-width$ -- 4
-write$ -- 27
+while$ -- 13
+width$ -- 6
+write$ -- 49

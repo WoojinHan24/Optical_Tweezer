@@ -6,6 +6,7 @@
 \usepackage{indentfirst}
 \usepackage{graphicx}
 \usepackage{caption}
+\usepackage{hyperref}
 
 \begin{document}
 
@@ -70,7 +71,7 @@ Since the equation involves randomness, it concerns ensemble mean of the displac
 \end{equation}
 
 Equation \ref{equation:Brownian_motion} shows direct relation between mean square displacement and time after a while.
-$s, D, k, T, b, t$ is displacement of particle, diffusion constant, Boltzman constant, absolute temperature, linear drag constan and time each.
+$s, D, k, T, b, t$ is displacement of particle, diffusion constant, Boltzman constant, absolute temperature, linear drag constant and time each.
 As you may check the raw experimental results plot on \ref{results:brownian_motion_raw_fig}, it is hard to find a linear relation.
 It has two noticable points, firstly the standard of the long time is not well defined.
 
@@ -100,10 +101,56 @@ The precise application is provided below. (\ref{results:modified_brownian_analy
 
 \subsection{Optical tweezer}
 \label{intro:optical_tweezer}
+While light is reflecting or refracting, the optical force is driven to a refractive matter.
+The effects can be calculated in various methods seperated by size of the particle.
+For the particles which have smaller size compares to wavelength, Rayleigh scattering(elastic scattering) demonstrates its physics well.
+Mie scattering, solves scattering problem of spherical objects analytically, is also a great solution for intermediate size particle. (\cite{T_matrix})
+In our experiment, particle size is large enough to neglect the subtle effects of fields, can use ray optical approach.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../results/Optical_tweezer_illust.png}
+    \caption{(a) Trap focus $f$ and the forces of dielectric sphere. (b) definition of an angle $\theta$ and $r$ in a single beam scattering}
+    \label{Figure:Optical tweezer}
+\end{figure}
 
+\begin{equation}
+    F_z = \frac{nP}{c} ( 1+ R \cos(2 \theta) - \frac{T^2 [\cos(2 \theta - 2r) + R \cos(2\theta)]}{1+R^2 + 2R \cos 2r} )
+    \label{equation:F_z}
+\end{equation}
 
+\begin{equation}
+    F_y = \frac{nP}{c} (R \sin(2 \theta) - \frac{T^2 [\sin(2 \theta - 2r) + R \sin(2\theta)]}{1+R^2 + 2R \cos 2r} )
+    \label{equation:F_y}
+\end{equation}
+Fig. \ref{Figure:Optical tweezer}(a) illustrates that the direction of trapping force always lies to the trap focus.
+We set our z direction parallel to the beam direction, and y direction as trapping focus lies on yz plane.
+Equation \ref{equation:F_z} and \ref{equation:F_y} is the force by a single beam, calculated infinite sum of transmitted and reflacted light.(\cite{single_beam})
+$n$ is relative refractive index, $P$ is power of the laser, $R$ is reflactance, $T$ is transmittance, $\theta$ is incident angle and $r$ is transmitted angle as Fig. \ref{Figure:Optical tweezer}(b).
+I uses Fresnel equation to obtain the reflactance and transmittance of a dielectric object, and follows geometric calculation from \cite{single_beam} to numerically calculate trapping force along y axis.
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../results/Optical_tweezer_intro_fig.png}
+    \caption{Trapping force - focus position plot in dielectric radius $a = 1\mu m$}
+    \label{Figure:Optical tweezer force}
+\end{figure}
+
+Fig. \ref{Figure:Optical tweezer force} shows the relation between trapping force and focus position. The force peaks at $0.98a$, very linear under range of $[a,-a]$.
+Therefore, it is very valid to assume a trapping force as linear restoring force. I will denote trapping force $F_t = -kx$. The simulation I programmed have two module, get a force by a single beam (\verb|get_force_single_beam|), and get a total gradient force by integrating a beam given in Gaussian intensity (\verb|get_trapping_force|).
+I write more details in \ref{discussion:optical_tweezer_simulation}, which whole code is uploaded in \url{https://github.com/WoojinHan24/Optical_Tweezer}
+
+\begin{equation}
+    m \ddot{x} =-b\dot{x} -k(x-vt)
+    \label{equation:EOM_of_optical_tweezer}
+\end{equation}
+\begin{equation}
+    |x(t) - vt| < a ,    \frac{vb}{k} < a 
+    \label{equation:trapping criteria}
+\end{equation}
+
+Therefore, we can modelize a particle of mass $m$ and its position $x$ follows an Equation \ref{equation:EOM_of_optical_tweezer}. $v$ stands for velocity of microscope stage, which we measured in the experiments.
+Equation \ref{equation:trapping criteria} shows the clear relation between trapping coefficient($k$), we want to measure, and critical velocity($v$), we had measure.
 
 
 \section{Experiment}
@@ -122,8 +169,9 @@ For example, $2 [\mu m]$ bead contains $2 \pm 0.2 [\mu m]$ which is not negliabl
 
 \section{Discussion}
 
-\subsection{optical tweezer model}
 
+\subsection{optical tweezer model}
+\label{discussion:optical_tweezer_simulation}
 \subsection{Refractive index}
 \label{discussion:refractive_index_calculation}
 

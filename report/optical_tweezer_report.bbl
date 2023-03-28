@@ -1,5 +1,16 @@
 \begin{thebibliography}{1}
 
+\bibitem{single_beam}
+A.~Ashkin.
+\newblock Forces of a single-beam gradient laser trap on a dielectric sphere in
+  the ray optics regime.
+\newblock {\em Biophysical Journal}, 61(2):569--582, 1992.
+
+\bibitem{T_matrix}
+Michael Bass.
+\newblock {\em Handbook of Optics Ch.7}, volume~3.
+\newblock McGraw-Hill, 1995.
+
 \bibitem{polybead_spec}
 Polysciences Inc.
 \newblock Polybead® sampler kit i.
