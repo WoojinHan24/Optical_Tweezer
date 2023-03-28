@@ -153,7 +153,66 @@ Therefore, we can modelize a particle of mass $m$ and its position $x$ follows a
 Equation \ref{equation:trapping criteria} shows the clear relation between trapping coefficient($k$), we want to measure, and critical velocity($v$), we had measure.
 
 
-\section{Experiment}
+\section{Methods}
+Optical tweezers module has set up in intermediate physics experiment laboratory, Seoul National University.
+Total modules are made by Thorlabs, Modular Optical Tweezers kit.(\cite{opticaltweezermodule})
+The experiment uses laser from Thorlabs, Inc., L658P040 - 658 nm, 40 mW (\cite{Laser_spec}).
+The micro dielectric particle is made of polystyrene by Polysciences, Polybead sampler kit i, (\cite{polybead_spec}).
+
+\subsection{Making Sample}
+\noindent
+Apparatus:
+distilled water, polystyrene bead($1, 2, 3 [\mu m]$), micropipette, slide glass with built-in channel, cover glass
+
+\begin{enumerate}
+    \item Dillute one drop of poilystyrene bead emulsion 100 times.
+    \item Drop $50 \mu l$ of the mixture in slide glass channel, carefully put a cover glass.
+\end{enumerate}
+The second step is very important, since the air pocket might give beads a drift force. (sample have drift force if the particle moves show tendency.)
+Also the sample evaporates easily to make air layer, I have changed sample for every 30 minuates.
+It is very good tip that enough mixture drop prevent those issues.
+
+\subsection{Adjust the Focus}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\linewidth]{../results/microscope_focusing.png}
+    \caption{figure of sample and high numerical aperture objectives.}
+    \label{Figure:microscope_focusing}
+\end{figure}
+We need a laser when adjusting the microscope focus.
+The Fig. \ref{Figure:microscope_focusing} is not even close to appropriate focus, conveys that it is impossible to adjust a focus while checking the sample position.
+The laser should be aligned well to make straight forward image on the sample.
+In order to raise stage, three different image of laser apears.
+The third and second image is so close to accidently ruins lens.
+Every step below will proceed on the third focus of the laser.
+
+
+\subsection{Brownian motion}
+\noindent
+Apparatus:
+microparticle sample, Modular Optical Tweezers kit(\cite{opticaltweezermodule}), Thorcam program
+
+\begin{enumerate}
+    \item Prepare a sample, and adjust the focus.
+    \item Turn on the laser and check whether a drift exsists.
+    \item Mark the loction in screen and move $20-30 \mu m$ the sample to metric scale a screen.
+    \item Record about 300 second of particles freely moving in fluid.
+\end{enumerate}
+
+I use tracker program to gain $(x(t),y(t))$ data of each Brownian motion.
+
+\subsection{Measure the trapping force}
+\noindent
+Apparatus:
+microparticle sample, Modular Optical Tweezers kit(\cite{opticaltweezermodule}), Thorcam program, sample positioning stage controller
+
+\begin{enumerate}
+    \item Prepare a sample, and adjust the focus.
+    \item Move the sample stage to capture a particle.
+    \item Find a critical velocity of particle, changing a stage velocity.
+    \item Do 1-3 repeatly in different intensity of laser.
+\end{enumerate}
+I change a magnitude of current passing through the laser $30-80 mA$, which is threshold and operation current each.
 
 \section{Results}
 \subsection{Brownian moiton : viscosity}
@@ -161,7 +220,7 @@ Equation \ref{equation:trapping criteria} shows the clear relation between trapp
 repeated measurement is not sufficient to calculate 'ensemble average'.
 The bead, used in experiment, radius is to diverse to assume isotropy between beads.
 For example, $2 [\mu m]$ bead contains $2 \pm 0.2 [\mu m]$ which is not negliable to set an ensemble.
-\cite{polybead_spec}
+
 \label{results:viscosity}
 \label{results:modified_brownian_analysis}
 \subsection{Tweezing Force}

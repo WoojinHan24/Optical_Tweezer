@@ -13,7 +13,18 @@ Michael Bass.
 
 \bibitem{polybead_spec}
 Polysciences Inc.
-\newblock Polybead® sampler kit i.
+\newblock Polybead sampler kit i.
+\newblock \url{\\https://www.polysciences.com/german/polybead-sampler-kit-i}.
+
+\bibitem{Laser_spec}
+Thorlabs Inc.
+\newblock L658p040 - 658 nm, 40 mw, Ø5.6 mm, a pin code, laser diode.
+\newblock \url{https://www.thorlabs.com/thorproduct.cfm?partnumber=L658P040}.
+
+\bibitem{opticaltweezermodule}
+Thorlabs Inc.
+\newblock Modular optical tweezers.
+\newblock \url{https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3959}.
 
 \bibitem{Reynolds_number}
 someone.
