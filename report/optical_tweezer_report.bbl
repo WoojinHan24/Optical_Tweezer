@@ -11,6 +11,10 @@ Michael Bass.
 \newblock {\em Handbook of Optics Ch.7}, volume~3.
 \newblock McGraw-Hill, 1995.
 
+\bibitem{Reynolds_number}
+Gregory Falkovich.
+\newblock Fluid mechanics.
+
 \bibitem{polybead_spec}
 Polysciences Inc.
 \newblock Polybead sampler kit i.
@@ -25,10 +29,6 @@ Thorlabs Inc.
 Thorlabs Inc.
 \newblock Modular optical tweezers.
 \newblock \url{https://www.thorlabs.com/newgrouppage9.cfm?objectgroup_id=3959}.
-
-\bibitem{Reynolds_number}
-someone.
-\newblock something.
 
 \bibitem{Brownian_motion_1}
 G.~E. Uhlenbeck and L.~S. Ornstein.

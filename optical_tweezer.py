@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.constants as constants
 import scipy.integrate as integrate
+import scipy.stats as stats
 
 def get_coefficient(
     n: np.float64, incident_angle: np.float64
@@ -55,8 +56,11 @@ def plot_trapping_force(
 
     fig=plt.figure(figsize=(8,4))
     ax=fig.add_subplot(1,1,1)
-    ax.plot(x,[get_trapping_force(X,n,P,a,w_0,f) for X in x],'k', linewidth=1.2)
+    force=[get_trapping_force(X,n,P,a,w_0,f) for X in x]
+    ax.plot(x,force,'k', linewidth=1.2)
     ax.set_xlabel('focus position [m]')
     ax.set_ylabel('trapping force [N]')
+    
 
     return fig
+

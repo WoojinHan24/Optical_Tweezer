@@ -7,15 +7,17 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{hyperref}
+\usepackage{float}
 
 \begin{document}
 
 \title{Optical Tweezer}
-\author[a]{Woojin Han}
-\affil[a]{Seoul National University, Seoul 151-747, Korea}
+\author[1]{Woojin Han}
+\affil[1]{Seoul National University, Seoul 151-747, Korea}
 \maketitle
 \begin{abstract}
-    this is abstract
+    In this experiment, the trapping force of an laser has measured. The precise integration of an single beam has proceeded, the refractional index has been presumed.
+    Additionally, Brownian motion and viscosity is also measured in step of the experiments.
 \end{abstract}
 
 \section{Introduction}
@@ -132,7 +134,7 @@ I uses Fresnel equation to obtain the reflactance and transmittance of a dielect
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.8\linewidth]{../results/Optical_tweezer_intro_fig.png}
-    \caption{Trapping force - focus position plot in dielectric radius $a = 1\mu m$}
+    \caption{Trapping force - focus position plot in dielectric radius $a = 3\mu m$}
     \label{Figure:Optical tweezer force}
 \end{figure}
 
@@ -214,25 +216,159 @@ microparticle sample, Modular Optical Tweezers kit(\cite{opticaltweezermodule}),
 \end{enumerate}
 I change a magnitude of current passing through the laser $30-80 mA$, which is threshold and operation current each.
 
-\section{Results}
+\section{Results and Discussion}
 \subsection{Brownian moiton : viscosity}
 \label{results:brownian_motion_raw_fig}
-repeated measurement is not sufficient to calculate 'ensemble average'.
-The bead, used in experiment, radius is to diverse to assume isotropy between beads.
-For example, $2 [\mu m]$ bead contains $2 \pm 0.2 [\mu m]$ which is not negliable to set an ensemble.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../results/2um_brownian_motion_raw_fig_0.png}
+    \caption{(a) raw figure of $x(t),y(t)$, (b) raw figure of $r(t)$ in experiment of $2 \mu m$ polystyrene beads}
+    \label{Figure:brownian_motion_raw_fig}
+\end{figure}
+ Fig. \ref{Figure:brownian_motion_raw_fig} is the raw plot of the bead position.
+ As the Fig . \ref{Figure:brownian_motion_raw_fig}(a) looks, it doesn't have any drift tendency.
+ But for sure, I suggest \verb|Is_Drift| function whether assume sign of $\Delta x(t) = x(t) - x(0)$ follows binary distribution $B(N,1/2)$.
+ If the experiment have below $20 \%$ possibility to appear, then the function returns 'True'.
+ The only data in $1\mu m$ has drift tendency through those test, I neglect that data before plotting line regression.
+
+ \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../results/3um_brownian_distribution_fig_0.png}
+    \caption{(a) Histogram of $\Delta x(t)$, (b) Histogram of $\Delta y(t)$ in experiment of $3 \mu m$ polystyrene beads}
+    \label{Figure:brownian_motion_distribution_fig}
+\end{figure}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../results/3um_brownian_qqplot_fig_0.png}
+    \caption{(a) QQ-plot of $\Delta x(t)$, (b) QQ-plot of $\Delta y(t)$ in experiment of $3 \mu m$ polystyrene beads}
+    \label{Figure:brownian_qqplot}
+\end{figure}
+
+ Moreover, the Fig. \ref{Figure:brownian_motion_distribution_fig} is the histogram result of $\Delta x(t), \Delta y(t)$ in $3\mu m$ brownian experiment.
+ Fig. \ref{Figure:brownian_qqplot} is QQ-plot with normal distribution which gives hard evidence of no drift tendency.
+ As a result obtain viscosity, we need to plot ensemble average to time graph.
+ Polystyrene beads have $10\%$ distribution on their radius (\cite{polybead_spec}).
+ For example, $2\mu m$ beads are actually contain $2 \pm 0.2 \mu m$ beads.
+ It is dangerous to assume that the beads are isotropic, and merge the data in same radius to form an ensemble.
+ And the method intorduced in \ref{intro:Brownian_motion} is used.
+ So, I made an ensemble of each particle, gain statistical results each, and find viscosity.
+ \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../results/2um_modified_brownian_fig_0.png}
+    \caption{(a) ensemble average to time plot $\bar{r^2} [m^2] - t[s]$, gray line is $1\sigma$ line, red line is linear regression result with criteria, (b) ensemble standard deviation to time plot $\sigma_{r^2} [m^2]-t[s]$}
+    \label{Figure:brownian_modified_fig}
+\end{figure}
+
+The modification I've done have serious issues in end of recording time.
+Ensemble $S(\tau)$ constructed by assumption of time isotropy, but their are not enough data to build ensemble for $\tau ~ t_r$.
+Mathematically $(\tau-t_r)\times f$, $t_r$ is the recording time, $f$ is the frame rate, is the ensemble elements number of $S(\tau)$.
+Therefore, there must be some criteria for cutting off an edge.
+I suggest Einstein's theory as criteria (\cite{Brownian_motion_1}).
+Einstein has suggested the ensemble variance is linear to t.
+As the Fig. \ref{Figure:brownian_modified_fig}(b) has smooth linear part at front and ruined after some time comparable with the record time.
+In those edge cutoff done, almost 200s (2000 frame) of data remains which is plenty enough to assume $t \gg \frac{m}{b}$, since $m$ has order of $10^{-16}$, $b$ has order of $10^{-9}$.
+Plots with different size microparticle is obtained at \url{https://github.com/WoojinHan24/Optical_Tweezer/tree/master/results}.
+\begin{figure}[h]
+    \centering
+    \begin{tabular}{|c| c| c|}
+            & slopes [$m^2/s$]& viscosity [$Pa \cdot s$]\\
+        \hline
+        1 $\mu m$ beads & $4.70\pm 0.02 \times 10^{-12}$ & $1.40 \pm 0.01 \times 10^{-4}$\\
+        2 $\mu m$ beads & $1.41\pm 0.01 \times 10^{-12}$ & $3.08 \pm 0.03 \times 10^{-4}$\\
+        3 $\mu m$ beads & $6.30\pm0.09 \times 10^{-13}$ & $4.61 \pm 0.09 \times 10^{-4}$
+        
+    \end{tabular}
+    \caption{linear regression results and viscosity in different size of beads.}
+    \label{Figure:linear regression results}
+\end{figure}
+
+Linear regression results and viscosity are shown at Fig. \ref{Figure:linear regression results} in different size of beads.
+By using equation \ref{equation:Brownian_motion}, slope $\alpha$ satisfies $\eta = \frac{2kT}{3\pi R \alpha}$, 2 is for degree of freedom we calculated.
+I use $b = 1.56 \times 10^{-8} N\cdot s/m$ as linear drag coefficient the weighted average of the result.
+
 
 \label{results:viscosity}
 \label{results:modified_brownian_analysis}
-\subsection{Tweezing Force}
+\subsection{Trapping Force}
 \label{results:tweezing_force}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.32\linewidth]{../results/1um_force_raw_plot.png}
+    \includegraphics[width=0.32\linewidth]{../results/2um_force_raw_plot.png}
+    \includegraphics[width=0.32\linewidth]{../results/3um_force_raw_plot.png}
+    \caption{plot of Trapping force [N] to Laser currnet [$A$](a) $1\mu m$ (b) $2\mu m$ (c) $3\mu m$, red lines are linear regression. More statics are shown below.}
+    \label{Figure:force_raw_fig}
+\end{figure}
 
-\section{Discussion}
+In the experiment, I detect a critical velocity in function of laser current.
+The laser has threshold of $35mA$ and operation current $75mA$.
+At the operation current, the output power is $40 mW$ (\cite{Laser_spec})
+Therefore, assuming the relation between power and current of laser follows $P= \xi  (I-I_0), I_0 = 0.035 [A], \xi = 1 [J/s\cdot A]$ is legitimate (laser has linear current dependancy to power).
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c| c| c|c|}
+            & slopes [$1/m\cdot s$]& intercept [$N$]& $R^2$\\
+        \hline
+        1 $\mu m$ beads & $4.72\pm 1.3 \times 10^{-12}$ & $7.4 \times 10^{-14}$ &$R^2=0.6888$\\
+        2 $\mu m$ beads & $6.92\pm 0.47 \times 10^{-12}$ & $3.87 \times 10^{-14}$&$R^2=0.9772$\\
+        3 $\mu m$ beads & $6.92\pm 0.58 \times 10^{-12}$ & $5.61 \times 10^{-16}$&$R^2=0.9658$
+        
+    \end{tabular}
+    \caption{linear regression results of Fig. \ref{Figure:force_raw_fig} in different size of beads.}
+    \label{Figure:force power linear regression results}
+\end{figure}
 
+The experiment on 1 $\mu m$ beads is too hard to measure since the particle are rarly catchable.
+But the two different results are highly accurate, so I will compare those results with simulations.
 
 \subsection{optical tweezer model}
 \label{discussion:optical_tweezer_simulation}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\linewidth]{../results/Optical_tweezer_simulation_fig.png}
+    \caption{Geometric relation of optical tweezer simulation}
+    \label{Figure:optical tweezer simulation_fig}
+\end{figure}
+Fig \ref{Figure:optical tweezer simulation_fig} shows geometrical reference of my calculation.
+First, The laser comes downward from lens makes its focus on point $f$.
+And, the intensity is relavent to its relative position with the center of the laser.
+In figure, $r$ is the relative distance from laser axis, and angle $\beta$ denotes direction form some axis.
+Therefore the single beam in the laser incident with angle $\theta$, gives force to dielctric in terms of equation \ref{equation:F_z} and \ref{equation:F_y}.
+I numerically integrate the total force by $r$ and $\beta$ in direction of $x$ and plot in Fig. \ref{Figure:Optical tweezer force}.
+(\cite{single_beam}, \url{https://github.com/WoojinHan24/Optical_Tweezer/blob/master/optical_tweezer.py})
+The laser and module specs were all open in \cite{opticaltweezermodule}, focus depth $f= 1 \mu m$, Numerical apperature $N/A =1.25$.
+
+
+
 \subsection{Refractive index}
 \label{discussion:refractive_index_calculation}
+I suggest the mathematical method to calculate refractive index with optical tweezer.
+This method is imperfect since lack of the dataset, but it is still notable to others try afterall.
+In above experiments, for critical velocity $v$ and $P$, $\frac{d v}{dP}$ has calculated.
+Using criteria at equation \ref{equation:trapping criteria}, 
+\begin{equation}
+    \frac{dk}{dP} = \frac{1}{R} \frac{d (bv)}{dP}
+\end{equation}
+The linear trapping force coefficient $k$ has been measured and also simulated.
+For the laser radius is $5.6 mm$, the magnification $\times 100$ is considered to find gaussian distribution precisely.
+At  fig. \ref{Figure:final_fig}, the simulation results of $\frac{dk}{dP}$ is plotted on differ by refraction index.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\linewidth]{../Final_figure.png}
+    \caption{$\frac{dk}{dP} [10^{-6} /m^2 \cdot s]$ to n plot}
+    \label{Figure:final_fig}
+\end{figure}
+
+After the linear regression, $\frac{dk}{dP} = (44.3 n  -43.5)\times 10^{-6} = (3.45 \times 10^{-6}) [1/m^2 \cdot s]$ for 2 $\mu m$ beads.
+Therefore, in that experiment, I obtained the relative refractive index as 1.05, which real value lies on $1.58/1.33 = 1.18$.
+But it is very difficult to numerically find standard deviation of that results, it is impossible to declare any statistical verification in this results.
+Any changes of this calculation or simulation will be updated in Github.
+
+\section{Summary}
+The brownian motion and its ensemble modification has applied. Therefore, the viscosity value and the linear drag coefficient has obtained.
+The trapping criteria and optical tweezer simulation has proceeded, the plot has successfully explain the trapping phenomena.
+Furthermore, the refractive index calculation is suggested and applied.
+It was not very successful to make accurate assumption of the index, it has a lot of oppertunity to develop.
 
 \bibliography{optical_tweezer_ref}
 \bibliographystyle{plain}
